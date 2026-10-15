@@ -1,0 +1,22 @@
+openapi: 3.0.3
+info:
+  title: Library Service API
+  description: Manages the books of a home library, their reading status and ratings.
+  version: 1.0.0
+
+paths:
+  /books/{id}:
+    get:
+      summary: Get a book by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Book found
+        '404':
+          description: Book not found
