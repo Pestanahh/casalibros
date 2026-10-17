@@ -1,0 +1,159 @@
+openapi: 3.0.3
+info:
+  title: Library Service API
+  description: Manages the books of a home library, their reading status and ratings.
+  version: 1.0.0
+
+paths:
+  /books:
+    get:
+      summary: List all books
+      responses:
+        '200':
+          description: List of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: Create a book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookRequest'
+      responses:
+        '201':
+          description: Book created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: Invalid book data
+
+  /books/{id}:
+    get:
+      summary: Get a book by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Book found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '404':
+          description: Book not found
+
+    delete:
+      summary: Delete a book by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Book deleted
+        '404':
+          description: Book not found
+
+    put:
+      summary: Update a book by id
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookRequest'
+      responses:
+        '200':
+          description: Book updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
+        '400':
+          description: Invalid book data
+        '404':
+          description: Book not found
+
+
+components:
+  schemas:
+
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - readingStatus
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author:
+          type: string
+        isbn:
+          type: string
+        genre:
+          type: string
+        readingStatus:
+          type: string
+          enum:
+            - PENDING
+            - READING
+            - READ
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+          
+    BookRequest:
+      type: object
+      required:
+        - title
+        - author
+        - readingStatus
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        isbn:
+          type: string
+        genre:
+          type: string
+        readingStatus:
+          type: string
+          enum:
+            - PENDING
+            - READING
+            - READ
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+
