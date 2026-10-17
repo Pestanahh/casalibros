@@ -18,6 +18,10 @@ paths:
       responses:
         '200':
           description: Book found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Book'
         '404':
           description: Book not found
 
