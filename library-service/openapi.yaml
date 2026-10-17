@@ -20,3 +20,37 @@ paths:
           description: Book found
         '404':
           description: Book not found
+
+components:
+  schemas:
+    Book:
+      type: object
+      required:
+        - id
+        - title
+        - author
+        - readingStatus
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author:
+          type: string
+        isbn:
+          type: string
+        genre:
+          type: string
+        readingStatus:
+          type: string
+          enum:
+            - PENDING
+            - READING
+            - READ
+        rating:
+          type: integer
+          minimum: 1
+          maximum: 5
+
+
