@@ -107,11 +107,13 @@ components:
 
     Book:
       type: object
+
       required:
         - id
         - title
         - author
         - readingStatus
+
       properties:
         id:
           type: integer
@@ -130,6 +132,12 @@ components:
             - PENDING
             - READING
             - READ
+        origin:
+          type: string
+          enum:
+            - PURCHASED
+            - GIFT
+            - OTHER
         rating:
           type: integer
           minimum: 1
@@ -156,6 +164,12 @@ components:
             - PENDING
             - READING
             - READ
+        origin:
+          type: string
+          enum:
+            - PURCHASED
+            - GIFT
+            - OTHER
         rating:
           type: integer
           minimum: 1
