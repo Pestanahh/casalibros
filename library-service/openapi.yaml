@@ -34,6 +34,8 @@ paths:
                 $ref: '#/components/schemas/Book'
         '400':
           description: Invalid book data
+        '409':
+          description: Book with this ISBN already exists
 
   /books/{id}:
     get:
@@ -96,6 +98,8 @@ paths:
           description: Invalid book data
         '404':
           description: Book not found
+        '409':
+          description: Book with this ISBN already exists
 
 
 components:
