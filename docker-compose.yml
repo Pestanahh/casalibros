@@ -1,0 +1,21 @@
+services:
+  # PostgreSQL database for library-service
+  library-db:
+    # Official PostgreSQL image, pinned to major version 16
+    image: postgres:16
+    container_name: library-db
+    environment:
+      # Read from the .env file (never hardcode credentials in this file)
+      POSTGRES_DB: ${LIBRARY_DB_NAME}
+      POSTGRES_USER: ${LIBRARY_DB_USER}
+      POSTGRES_PASSWORD: ${LIBRARY_DB_PASSWORD}
+    ports:
+      # host-port:container-port (lets the app and DBeaver connect from Windows)
+      - "5432:5432"
+    volumes:
+      # Named volume so the data survives if the container is removed
+      - library-db-data:/var/lib/postgresql/data
+
+# Named volumes managed by Docker, stored outside the container
+volumes:
+  library-db-data:
