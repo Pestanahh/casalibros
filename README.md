@@ -10,7 +10,7 @@ Home library manager built with Spring Boot microservices. Track your books, you
 
 
 
-Java 17, Spring Boot, PostgreSQL, Docker, Kubernetes, GitHub Actions, Spring Security (JWT), Angular.
+Java 21, Spring Boot, PostgreSQL, Docker, Kubernetes, GitHub Actions, Spring Security (JWT), Angular.
 
 
 
